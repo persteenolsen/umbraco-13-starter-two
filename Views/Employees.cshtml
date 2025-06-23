@@ -1,0 +1,104 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+//	Layout = null;
+ Layout = "MasterMVC.cshtml";
+}
+
+
+@using MvcUmbraco.Controllers
+@using MvcUmbraco.Models
+@model IEnumerable<Employee>
+
+
+<!-- Jumbotron, w title -->
+    <div class="jumbotron text-center jumbotron-fluid">
+            <div class="container">
+              
+              <h1 class="display-1">Employees</h1> 
+            
+            </div>
+        </div>
+
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+
+     
+      @if (TempData["ResultOk"] != null)
+        {
+           <br /> 
+           <h2 class="alert-success">@TempData["ResultOk"]</h2>
+           
+        }
+       
+       <br />
+       <h2>List of Employees</h2>
+             
+       <div class="autoscrollable-wrapper"></div>
+        
+       <p><a href="/emp-create">Create an Employee</a></p>
+
+        <table class="table table-responsive table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Address</th>
+                <th scope="col">CreatedOn</th>
+                <th></th>
+            </tr>
+         </thead>
+         
+         <tbody>
+          @if(Model == null)
+          {
+            <tr><td colspan="5" style="text-align:center">Error, the Model is empty !</td></tr>
+          } 
+          else
+          {
+             @foreach (var item in Model ) 
+            {
+                <tr>
+                    <td width="20%">
+                        @item.Name
+                    </td>
+                    <td width="20%">
+                        @item.Designation
+                    </td>
+                    <td width="25%">
+                        @item.Address
+                    </td>
+                    <td width="20%">
+                        @item.RecordCreatedOn
+                    </td>
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                                                      
+                             <a href="/emp-update?id=@item.Id">Edit</a>
+                             <br />&nbsp;&nbsp;&nbsp;
+
+                              <a href="/emp-delete?id=@item.Id">Delete</a>
+                             <br />&nbsp;
+
+                          
+                        </div>
+                    </td>
+                </tr>
+           } 
+          
+           }
+          
+           </tbody>
+
+        </tbody>
+       </table>
+
+
+      </div>
+
+
+
+    </div>
+</section>    

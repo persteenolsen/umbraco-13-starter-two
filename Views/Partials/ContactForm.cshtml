@@ -1,0 +1,28 @@
+@using MvcUmbraco.Controllers
+@model MvcUmbraco.Models.ContactFormViewModel
+
+<p><b>Submitted values:</b>
+@TempData["Name"] @TempData["Email"]  @TempData["Message"]</p>
+
+@using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.Submit)))
+{
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="Message"></label><br />
+        <textarea asp-for="Message"></textarea>
+    </div>
+    
+    <br/>
+    <input type="submit" name="Submit" value="Submit" />
+    <br /><br />
+
+  
+}
+ 
