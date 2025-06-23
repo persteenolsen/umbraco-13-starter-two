@@ -2,11 +2,17 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-	Layout = "MasterMVC.cshtml";
+	Layout = "MasterEmp.cshtml";
 }
 
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
+
+
+@* Could be an alternative to "@model Employee" *@
+@* 
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Employee>
+*@
 
 @model Employee
 

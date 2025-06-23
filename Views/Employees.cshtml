@@ -3,14 +3,20 @@
 
 @{
 //	Layout = null;
- Layout = "MasterMVC.cshtml";
+ Layout = "MasterEmpList.cshtml";
 }
 
 
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
-@model IEnumerable<Employee>
 
+
+@* The active statement ss indedd an alternative to "@model <IEnumerable<Employee>>" *@
+@* 
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Employee>>
+*@
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Employee>>
 
 <!-- Jumbotron, w title -->
     <div class="jumbotron text-center jumbotron-fluid">

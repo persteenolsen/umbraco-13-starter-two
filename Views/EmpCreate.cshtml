@@ -1,10 +1,15 @@
 ﻿
 
 @{
-	Layout = "MasterMVC.cshtml";
+	Layout = "MasterEmp.cshtml";
 }
 
 @using MvcUmbraco.Controllers
+
+@* Could be an alternative to "@model MvcUmbraco.Models.Employee" *@
+@* 
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Employee>
+*@
 
 @model MvcUmbraco.Models.Employee
 
