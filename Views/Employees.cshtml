@@ -40,7 +40,22 @@
         }
        
        <br />
-       <h2>List of Employees</h2>
+
+       <!--Note: 24-06-2025: The Title of the Page displayed by Umbraco 
+       Helper instead of Model.Value which make conflict with my custom Model-->
+       <!--24-06-2025: Getting the Page Title of the Page by Umbraco Helper-->
+         @{
+             var nodeid = 1083;
+             var mypage = Umbraco.Content(nodeid);
+             if( mypage != null ){
+                 <h2>@mypage.Value("pageTitle")</h2>
+                 } else
+                 { 
+                  <h2>List of Employees</h2>
+                 }
+            }
+       <!--Using the above method by Umbraco Helper-->
+       <!--<h2>List of Employees</h2>-->
              
        <div class="autoscrollable-wrapper"></div>
         
@@ -100,11 +115,9 @@
 
         </tbody>
        </table>
-
+       
 
       </div>
-
-
-
+           
     </div>
 </section>    
