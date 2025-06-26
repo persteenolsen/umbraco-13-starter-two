@@ -1,27 +1,30 @@
 ﻿
-
 @{
 	Layout = "MasterEmp.cshtml";
 }
 
 @using MvcUmbraco.Controllers
+@using MvcUmbraco.Models
 
-
-@* Could be an alternative to "@model MvcUmbraco.Models.Employee" *@
-@* 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Employee>
-*@
-
-@model MvcUmbraco.Models.Employee
 
 
   <!-- Jumbotron, w title -->
  <div class="jumbotron text-center jumbotron-fluid">
-            <div class="container">
-              
-              <h2 class="display-1">Create Employee</h2> 
+        <div class="container">
+                            
+           @{
+                @* The pageTitle of the Current Page will be displayed *@
+                var currentPage = Umbraco.AssignedContentItem;
+                if( currentPage != null) {
+                   <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
+                  }
+               else { 
+                     <h1 class="display-1">Create Employee</h1> 
+                     }
+            }   
             
-            </div>
+       </div>
   </div>
   
 

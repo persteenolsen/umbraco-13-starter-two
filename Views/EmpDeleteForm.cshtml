@@ -8,22 +8,24 @@
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
 
-
-@* Could be an alternative to "@model Employee" *@
-@* 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Employee>
-*@
-
-@model Employee
-
 
   <!-- Jumbotron, w title -->
  <div class="jumbotron text-center jumbotron-fluid">
-            <div class="container">
+       <div class="container">
               
-              <h2 class="display-1">Delete Employee</h2> 
+           @{
+                @* The pageTitle of the Current Page will be displayed *@
+                var currentPage = Umbraco.AssignedContentItem;
+                if( currentPage != null) {
+                   <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
+                  }
+               else { 
+                     <h1 class="display-1">Delete Employee</h1> 
+                     }
+            }  
             
-            </div>
+        </div>
   </div>
   
 

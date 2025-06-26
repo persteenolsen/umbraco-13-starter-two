@@ -2,28 +2,30 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-//	Layout = null;
+
  Layout = "MasterEmpList.cshtml";
 }
-
 
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
 
-
-@* The active statement is indedd an alternative to "@model <IEnumerable<Employee>>" *@
-@* 
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Employee>>
-*@
-
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Employee>>
 
 <!-- Jumbotron, w title -->
-    <div class="jumbotron text-center jumbotron-fluid">
-            <div class="container">
+ <div class="jumbotron text-center jumbotron-fluid">
+     <div class="container">
               
-              <h1 class="display-1">Employees</h1> 
-            
+             @{
+                @* The pageTitle of the Current Page will be displayed *@
+                var currentPage = Umbraco.AssignedContentItem;
+                if( currentPage != null) {
+                   <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
+                  }
+               else { 
+                     <h1 class="display-1">List of Employees</h1> 
+                     }
+             }
+                      
             </div>
         </div>
 
@@ -31,7 +33,7 @@
 <section id="main" class="wrapper">
     <div class="container">
 
-     
+      <!--Feedback to the User after CRUD -->     
       @if (TempData["ResultOk"] != null)
         {
            <br /> 
@@ -41,25 +43,20 @@
        
        <br />
 
-       <!--Note: 24-06-2025: The Title of the Page displayed by Umbraco 
-       Helper instead of Model.Value which make conflict with my custom Model-->
-       <!--24-06-2025: Getting the Page Title of the Page by Umbraco Helper-->
-         @{
-             var nodeid = 1083;
-             var mypage = Umbraco.Content(nodeid);
-             if( mypage != null ){
-                 <h2>@mypage.Value("pageTitle")</h2>
-                 } else
-                 { 
-                  <h2>List of Employees</h2>
-                 }
-            }
-       <!--Using the above method by Umbraco Helper-->
-       <!--<h2>List of Employees</h2>-->
+        @{
+           @* The bodyText of the Current Page will be displayed *@
+           if( currentPage != null) {
+               <h2>@currentPage.Value("bodyText")</h2>
+               }
+               else { 
+                   <h2>MVC and Employees</h2>
+                   }
+         }
+       
              
        <div class="autoscrollable-wrapper"></div>
-        
-       <p><a href="/emp-create">Create an Employee</a></p>
+     
+        <p><a href="/emp-create">Create an Employee</a></p>
 
         <table class="table table-responsive table-bordered table-hover">
         <thead>
@@ -73,6 +70,8 @@
          </thead>
          
          <tbody>
+
+          <!--Loop through the Employees if the Model is not null -->
           @if(Model == null)
           {
             <tr><td colspan="5" style="text-align:center">Error, the Model is empty !</td></tr>
@@ -102,7 +101,6 @@
 
                               <a href="/emp-delete?id=@item.Id">Delete</a>
                              <br />&nbsp;
-
                           
                         </div>
                     </td>
