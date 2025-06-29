@@ -56,7 +56,7 @@ public class EmpEditFormController : SurfaceController
             TempData["ResultOk"] = "Employee was Updated Successfully !";
             
             //return View("Employees");
-            return RedirectToAction("Employees", "Employee", new { area = "" });
+            return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });
            
         } 
 
@@ -64,7 +64,7 @@ public class EmpEditFormController : SurfaceController
 
         //  return View(empobj);
         //return View("Employees");
-        return RedirectToAction("Employees", "Employee", new { area = "" });  
+        return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });  
         }
 
 }

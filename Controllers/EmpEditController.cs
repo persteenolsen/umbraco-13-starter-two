@@ -29,12 +29,10 @@ namespace MvcUmbraco.Controllers
 
         
         // [Route("/emp-update/{id?}")]
-        // 21-06-2025 - Note: I am only using the below Action for now in this Controller !!
         public IActionResult EmpEdit()
         //public override IActionResult Index()
         {
-            int id = 1;
-            // string idS = "";
+            int id = 0;
 
             // 21-06-2025: Note - take id param from this url 
             // https://localhost:44317/emp-update?id=5
@@ -46,21 +44,21 @@ namespace MvcUmbraco.Controllers
             // be taking care of or at lest hide the menu - item from the Menu
             string idS = HttpContext.Request.Query["id"].ToString();
 
-            // if(idS != null )
-            id = int.Parse(idS);
-
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+            Boolean res = false;
+            int a;
+            res = int.TryParse(idS, out a);
+            if( res )
+               id = int.Parse(idS);
+                
             var empfromdb = _context.Employees.Find(id);
 
             if (empfromdb == null)
             {
-                return NotFound();
-            }
+                TempData["EmpEditResult"] = "Select an Employee from the List !";
+                return View("EmpEditForm");
+                //return RedirectToAction("Employees", "Employee", new { area = "" });
+            } 
 
-            // return View(empfromdb);
             return View("EmpEditForm", empfromdb);
 
         } 

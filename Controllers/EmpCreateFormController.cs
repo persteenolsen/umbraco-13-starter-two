@@ -6,7 +6,6 @@ using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Website.Controllers;
 
-
 using Microsoft.AspNetCore.Mvc;
 
 using MvcUmbraco.Data;
@@ -36,25 +35,25 @@ public class EmpCreateFormController : SurfaceController
 
     }
 
-    
+
     [HttpPost]
     // [ValidateAntiForgeryToken]
     //  [Route("/employees/edit/{id?}")]
     public IActionResult Submit(Employee empobj)
     {
-       
+
         if (ModelState.IsValid)
         {
-           
-             var cdate = DateTime.Now;
-             empobj.RecordCreatedOn = cdate;
 
-              _context.Employees.Add(empobj);
-              _context.SaveChanges();
-             TempData["ResultOk"] = "Employee Added Successfully !";
+            var cdate = DateTime.Now;
+            empobj.RecordCreatedOn = cdate;
+
+            _context.Employees.Add(empobj);
+            _context.SaveChanges();
+            TempData["ResultOk"] = "Employee Added Successfully !";
 
             //return View("Employees");
-            return RedirectToAction("Employees", "Employee", new { area = "" });
+            return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });
 
         }
 
@@ -62,7 +61,7 @@ public class EmpCreateFormController : SurfaceController
 
         // return View(empobj);
         //return View("Employees");
-         return RedirectToAction("Employees", "Employee", new { area = "" });
+         return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });
     }
         
 

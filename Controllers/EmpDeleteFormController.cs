@@ -37,7 +37,7 @@ public class EmpDeleteFormController : SurfaceController
     }
 
     [HttpPost]
-   // [ValidateAntiForgeryToken]
+    // [ValidateAntiForgeryToken]
     public IActionResult Submit(int? id)
     {
         var deleterecord = _context.Employees.Find(id);
@@ -46,7 +46,7 @@ public class EmpDeleteFormController : SurfaceController
             // return NotFound();
             TempData["ResultOk"] = "Employee was not Deleted !";
 
-            return RedirectToAction("Employees", "Employee", new { area = "" });  
+            return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });
         }
         _context.Employees.Remove(deleterecord);
         _context.SaveChanges();
@@ -54,7 +54,7 @@ public class EmpDeleteFormController : SurfaceController
         TempData["ResultOk"] = "Employee was Deleted Successfully !";
 
         //return RedirectToAction("Index");
-        return RedirectToAction("Employees", "Employee", new { area = "" });  
+         return RedirectToAction("EmpListFeedBack", "EmpList", new { area = "" });
       
       
        }

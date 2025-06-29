@@ -33,7 +33,7 @@ namespace MvcUmbraco.Controllers
         public IActionResult EmpDelete()
         //public override IActionResult Index()
         {
-            int id = 1;
+            int id = 0;
             // string idS = "";
 
             // 21-06-2025: Note - take id param from this url 
@@ -45,20 +45,21 @@ namespace MvcUmbraco.Controllers
             // Note: Because of the below statement the url /emp-update will throw an error which should 
             // be taking care of or at lest hide the menu - item from the Menu
             string idS = HttpContext.Request.Query["id"].ToString();
-
-            // if(idS != null )
-            id = int.Parse(idS);
-
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+                        
+            Boolean res = false;
+            int a;
+            res = int.TryParse(idS, out a);
+            if( res )
+               id = int.Parse(idS);
+                
             var empfromdb = _context.Employees.Find(id);
 
             if (empfromdb == null)
             {
-                return NotFound();
-            }
+                TempData["EmpDeleteResult"] = "Select an Employee from the List !";
+                return View("EmpDeleteForm");
+                //return RedirectToAction("Employees", "Employee", new { area = "" });
+            } 
 
             // return View(empfromdb);
             return View("EmpDeleteForm", empfromdb);

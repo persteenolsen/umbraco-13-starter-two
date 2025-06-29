@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 
-
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
@@ -24,18 +23,38 @@ namespace MvcUmbraco.Controllers
         : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
             _context = context;
+
         }
 
 
-        // 22-06-2025 - Using to show the Form for Create Employee
-        // Note: The must be a Umbraco Content Node with the same Route for every Route defined here
-        // // to map to the Action / Controller
-        [Route("/emp-create")]
-        [Route("/create-an-employee")]
-        public IActionResult Create()
+        // 27-06-2025 - Using to show the Form for Create Employee
+        // Here the Action = Document Type / Template Alias
+        // Note: This is for the Umbraco Preview
+        public IActionResult EmpCreate()
         {
-            // return View();
             return View("EmpCreateForm");
         }
+
+        // This route is hit by clicking a link 
+        [Route("/emp-create")]
+        public IActionResult Create()
+        {
+
+            // 28-06-2025 - A simulation used when testing frontend validation
+            /*  Employee Emp = new Employee
+               {
+                   Id = 2,
+                   Name = "Bo",
+                   Designation = "Salesman",
+                   Address = "Sweeden",
+                   RecordCreatedOn = DateTime.Now
+
+               };
+               return View("EmpCreateForm", Emp);
+               */
+
+            return View("EmpCreateForm");
+
+         }
     }
 }

@@ -1,50 +1,47 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.EmpList>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-
  Layout = "MasterEmpList.cshtml";
 }
 
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
 
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Employee>>
-
-<!-- Jumbotron, w title -->
- <div class="jumbotron text-center jumbotron-fluid">
-     <div class="container">
+<!--Jumbotron, w title -->
+  <div class="jumbotron text-center jumbotron-fluid">
+          <div class="container">
               
              @{
-                @* The pageTitle of the Current Page will be displayed *@
+                @* The pageTitle will be displayed by the Current Page / Content Node *@
                 var currentPage = Umbraco.AssignedContentItem;
                 if( currentPage != null) {
-                   <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
+                    <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
                   }
                else { 
                      <h1 class="display-1">List of Employees</h1> 
                      }
-             }
-                      
-            </div>
-        </div>
+              }
+                                  
+          </div>
+  </div>
 
 <!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
-
-      <!--Feedback to the User after CRUD -->     
+     
+      <!--Feedback message to the User-->
       @if (TempData["ResultOk"] != null)
         {
-           <br /> 
-           <h2 class="alert-success">@TempData["ResultOk"]</h2>
-           
+           <br /><h2 class="alert-success">@TempData["ResultOk"]</h2>
         }
        
        <br />
 
         @{
-           @* The bodyText of the Current Page will be displayed *@
+           @* The bodyText will be displayed by the Current Page / Content Node *@
            if( currentPage != null) {
                <h2>@currentPage.Value("bodyText")</h2>
                }
@@ -53,10 +50,9 @@
                    }
          }
        
-             
+
        <div class="autoscrollable-wrapper"></div>
-     
-        <p><a href="/emp-create">Create an Employee</a></p>
+       <p><a href="/emp-create" target="_top">Create an Employee</a></p>
 
         <table class="table table-responsive table-bordered table-hover">
         <thead>
@@ -70,16 +66,17 @@
          </thead>
          
          <tbody>
+        
+        
+        @if( ViewData["EmployeeData"] == null ){
+             <p>Error, the Model is null...</p>
+            }
+        else{
 
-          <!--Loop through the Employees if the Model is not null -->
-          @if(Model == null)
-          {
-            <tr><td colspan="5" style="text-align:center">Error, the Model is empty !</td></tr>
-          } 
-          else
-          {
-             @foreach (var item in Model ) 
-            {
+            <!--Look all the Employees-->
+           @foreach (var item in (IEnumerable<Employee>)ViewData["EmployeeData"])
+          //  @foreach (var item in Model )
+              {
                 <tr>
                     <td width="20%">
                         @item.Name
@@ -105,17 +102,13 @@
                         </div>
                     </td>
                 </tr>
-           } 
-          
-           }
-          
-           </tbody>
+             } 
+          }         
 
         </tbody>
        </table>
        
-
       </div>
-           
+
     </div>
-</section>    
+</section>

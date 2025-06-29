@@ -7,32 +7,48 @@
 
 @using MvcUmbraco.Controllers
 @using MvcUmbraco.Models
+@using Umbraco.Cms.Web.Common.UmbracoContext
 
+@* Is an alternative to "@model DevUmbraco.Models.Employee" *@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Employee>
+      
 
   <!-- Jumbotron, w title -->
  <div class="jumbotron text-center jumbotron-fluid">
-       <div class="container">
-              
-           @{
-                @* The pageTitle of the Current Page will be displayed *@
+            <div class="container">
+                             
+              @{
+                @* The pageTitle will be displayed by the Current Page / Content Node *@
                 var currentPage = Umbraco.AssignedContentItem;
+                
                 if( currentPage != null) {
-                   <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
+                    <h1 class="display-1">@currentPage.Value("pageTitle")</h1>
                   }
                else { 
                      <h1 class="display-1">Delete Employee</h1> 
                      }
-            }  
+              
+              }  
             
-        </div>
+            </div>
   </div>
   
 
 <div class="container shadow p-5">
 
     Hello from EmpDeleteForm.cs<br /><br />
-
+    
+     @*<h1 class="display-1">@currentPage.Value("umbracoNaviHide")</h1>*@
+     @if( UmbracoContext.InPreviewMode ){
+         <p><i>Preview Mode</i></p> 
+     }
+        
+     <!--Feedback message to the User-->
+     @if (TempData["EmpDeleteResult"] != null)
+      {
+        <h2 class="alert-danger">@TempData["EmpDeleteResult"]</h2>
+      }
+           
       
 @using (Html.BeginUmbracoForm<EmpDeleteFormController>(nameof(EmpDeleteFormController.Submit)))
     {
