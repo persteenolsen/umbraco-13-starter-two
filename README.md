@@ -2,7 +2,7 @@
 
 Last Updated:
 
-29-06-2025
+30-06-2025
 
 A Website by Umbraco CMS 13 serving as a Starter with custom MVC using EF Core
 
@@ -40,6 +40,7 @@ Run the command below for update the Database by the Migration
 
 - .NET 8
 - Umbraco CMS 13
+- Entity Framework Core
 - SQLite DB for both Dev + Prod
 - A traditional Webhotel for hosting
 - VS Code
@@ -144,7 +145,7 @@ Be sure that the Models for the Document Types are available and Recognized in V
 
 - Go to the Models Builder in the Admin Section of your site and click: Regenerate Models
 
-- Take a look in the folder: umbraco / models where the .cs files / models were created by VS Code
+- Take a look in the folder by VS Code: umbraco / models where the .cs files / models were created
 
 - Stop your site and make a dotnet run to see your site is running
 
