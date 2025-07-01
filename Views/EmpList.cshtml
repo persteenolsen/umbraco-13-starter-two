@@ -54,14 +54,14 @@
        <div class="autoscrollable-wrapper"></div>
        <p><a href="/emp-create" target="_top">Create an Employee</a></p>
 
-        <table class="table table-responsive table-bordered table-hover">
+        <table class="table table-responsive table-hover">
         <thead>
             <tr>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Designation</th>
                 <th scope="col">Address</th>
                 <th scope="col">CreatedOn</th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
          </thead>
          
@@ -84,13 +84,13 @@
                     <td width="20%">
                         @item.Designation
                     </td>
-                    <td width="25%">
+                    <td width="20%">
                         @item.Address
                     </td>
                     <td width="20%">
                         @item.RecordCreatedOn
                     </td>
-                    <td>
+                    <td width="20%">
                         <div role="group" class="w-60 btn-group">
                                                       
                              <a href="/emp-update?id=@item.Id">Edit</a>
