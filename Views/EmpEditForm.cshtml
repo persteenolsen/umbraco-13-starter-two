@@ -36,8 +36,9 @@
   
 
 <div class="container shadow p-5">
-
-    Hello from EmpEditForm.cs<br /><br />
+    
+     <!--04-09-2025 - Just for Testing -->
+    <!--Hello from EmpEditForm.cs<br /><br />-->
     
      @*<h1 class="display-1">@currentPage.Value("umbracoNaviHide")</h1>*@
      @if( UmbracoContext.InPreviewMode ){
@@ -57,7 +58,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label asp-for="Name">Employee Name</label>
+                <label asp-for="Name">Name</label>
                 <input type="text" class="form-control mb-3" asp-for="Name">
                 <span asp-validation-for="Name" class=" alert-danger"></span>
             </div>

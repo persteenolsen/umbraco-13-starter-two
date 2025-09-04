@@ -35,7 +35,7 @@
       <!--Feedback message to the User-->
       @if (TempData["ResultOk"] != null)
         {
-           <br /><h2 class="alert-success">@TempData["ResultOk"]</h2>
+           <br /><div class="alert-success">@TempData["ResultOk"]</div>
         }
        
        <br />
@@ -57,7 +57,7 @@
         <table class="table table-responsive table-hover">
         <thead>
             <tr>
-                <th scope="col">Employee Name</th>
+                <th scope="col">Name</th>
                 <th scope="col">Designation</th>
                 <th scope="col">Address</th>
                 <th scope="col">CreatedOn</th>
