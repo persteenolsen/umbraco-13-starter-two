@@ -2,7 +2,7 @@
 
 Last Updated:
 
-04-09-2025
+21-11-2025
 
 A Website by Umbraco CMS 13 serving as a Starter with custom MVC using EF Core
 
