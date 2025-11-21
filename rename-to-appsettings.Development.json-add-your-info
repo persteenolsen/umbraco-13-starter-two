@@ -28,6 +28,10 @@
           "Password": "your-email-password"
         }
       },
+       "Content": {
+        "MacroErrors": "Throw"
+      },
+      
       "ModelsBuilder": {
         "ModelsMode": "SourceCodeManual",
         "ModelsNamespace": "Umbraco.Cms.Web.Common.PublishedModels",
@@ -37,8 +41,9 @@
         "DebugLevel": 0,
         "IncludeVersionNumberInGeneratedModels": true
       },
-      "Content": {
-        "MacroErrors": "Throw"
+     
+      "Runtime": {
+        "Mode": "BackofficeDevelopment"
       },
       "Hosting": {
         "Debug": true
